@@ -23,7 +23,7 @@ export type Operation = {
 //   }
 // }
 
-type CashInOperation = {
+export type CashInOperation = {
   percents: number;
   max: {
     amount: number;
@@ -31,7 +31,7 @@ type CashInOperation = {
   };
 };
 
-type CashOutNaturalOperation = {
+export type CashOutNaturalOperation = {
   percents: number;
   week_limit: {
     amount: number;
@@ -39,7 +39,7 @@ type CashOutNaturalOperation = {
   };
 };
 
-type CashOutJuridicalOperation = {
+export type CashOutJuridicalOperation = {
   percents: number;
   min: {
     amount: number;

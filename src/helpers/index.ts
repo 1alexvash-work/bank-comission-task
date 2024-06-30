@@ -10,6 +10,8 @@ const determineOperation = (operation: Operation) => {
       return "cash_out_juridical";
     }
   }
+
+  return "cash_in";
 };
 
 export { determineOperation };
