@@ -5,11 +5,17 @@ import { Operation } from "./types";
 
 const expectedList = [0.06, 0.9, 87.0, 3.0, 0.3, 0.3, 5.0, 0.0, 0.0];
 
-const tests = inputData.map((operation, index) => ({
-  actual: calculateCommissionFees(operation as Operation),
-  expected: expectedList[index],
-}));
+const runAsyncTests = async () => {
+  const tests = await Promise.all(
+    inputData.map(async (operation, index) => ({
+      actual: await calculateCommissionFees(operation as Operation),
+      expected: expectedList[index],
+    }))
+  );
 
-const runTestResults = runTests({ tests });
+  const runTestResults = runTests({ tests });
 
-console.log({ runTestResults });
+  console.log({ runTestResults });
+};
+
+runAsyncTests();
