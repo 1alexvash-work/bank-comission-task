@@ -2,5 +2,11 @@
   "name": "bank-comission-task",
   "version": "1.0.0",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  },
+  "scripts": {
+    "dev": "nodemon src/index.ts"
+  }
 }
