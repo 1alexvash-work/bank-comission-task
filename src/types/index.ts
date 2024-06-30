@@ -22,3 +22,27 @@ export type Operation = {
 //       "currency": "EUR" // operation currency `EUR`
 //   }
 // }
+
+type CashInOperation = {
+  percents: number;
+  max: {
+    amount: number;
+    currency: string;
+  };
+};
+
+type CashOutNaturalOperation = {
+  percents: number;
+  week_limit: {
+    amount: number;
+    currency: string;
+  };
+};
+
+type CashOutJuridicalOperation = {
+  percents: number;
+  min: {
+    amount: number;
+    currency: string;
+  };
+};
