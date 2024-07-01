@@ -1,6 +1,6 @@
 import { Operation } from "../types";
 
-const determineOperation = (operation: Operation) => {
+export const determineOperation = (operation: Operation) => {
   if (operation.type === "cash_out" && operation.user_type === "natural") {
     return "cash_out_natural";
   } else if (
@@ -13,4 +13,12 @@ const determineOperation = (operation: Operation) => {
   }
 };
 
-export { determineOperation };
+export const ISODateToCalendarWeek = (date: string) => {
+  const dateObject = new Date(date);
+  const oneJan = new Date(dateObject.getFullYear(), 0, 1);
+  const numberOfDays = Math.floor(
+    (dateObject.getTime() - oneJan.getTime()) / 86400000
+  );
+
+  return Math.ceil((dateObject.getDay() + 1 + numberOfDays) / 7);
+};
