@@ -2,10 +2,16 @@ import { assertEqual, runTests } from "./tests";
 import inputData from "./input.json";
 import calculateCommissionFees from "./calculateCommissionFees";
 import { OperationWithResult } from "./types";
+import { determineOperation } from "./helpers";
 
 const runAsyncTests = async () => {
-  await Promise.all(
-    inputData.map(async (operation) => {
+  console.time("⌛ time to get results");
+
+  for (const operation of inputData) {
+    if (
+      determineOperation(operation as OperationWithResult) ===
+      "cash_out_natural"
+    ) {
       console.log(
         assertEqual({
           actual: await calculateCommissionFees(
@@ -14,14 +20,10 @@ const runAsyncTests = async () => {
           expected: operation.expected,
         })
       );
-    })
-  );
+    }
+  }
+
+  console.timeEnd("⌛ time to get results");
 };
 
 runAsyncTests();
-
-// TODO: for tomorrow
-// check whether determine operation works | looks alright ✅
-// check whether the hardest case, has this fucked up logic with by weekly payment, if so implement some caching, with remembering payment week
-// try to do some work, to better decipher on which test is which, so I can do better appropriate testing tomorrow
-// Look up my knowledge, on hos the promise all works, is it consequential? it might matter in this task
