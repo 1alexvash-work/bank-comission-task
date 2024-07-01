@@ -12,4 +12,4 @@ yarn dev
 
 # Regarding tests
 
-You can modify inputData at `src/input.json`, then also modify `expectedList` results at `src/index.ts`
+You can play with tests or break them at `src/input.json`
