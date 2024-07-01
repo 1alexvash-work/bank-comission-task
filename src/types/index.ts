@@ -11,6 +11,10 @@ export type Operation = {
   };
 };
 
+export type OperationWithResult = Operation & {
+  expected: number;
+};
+
 // * Example object, for reference only
 // {
 //   "date": "2016-01-05", // operation date in format `Y-m-d`
