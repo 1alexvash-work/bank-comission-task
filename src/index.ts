@@ -1,35 +1,21 @@
-import { runTests } from "./tests";
+import { assertEqual, runTests } from "./tests";
 import inputData from "./input.json";
 import calculateCommissionFees from "./calculateCommissionFees";
 import { OperationWithResult } from "./types";
 
-const getResults = async () => {
-  console.time("⌛ time to get results");
-
-  const results = await Promise.all(
+const runAsyncTests = async () => {
+  await Promise.all(
     inputData.map(async (operation) => {
-      return await calculateCommissionFees(operation as OperationWithResult);
+      console.log(
+        assertEqual({
+          actual: await calculateCommissionFees(
+            operation as OperationWithResult
+          ),
+          expected: operation.expected,
+        })
+      );
     })
   );
-
-  console.timeEnd("⌛ time to get results");
-
-  return results;
-};
-
-const runAsyncTests = async () => {
-  const results = await getResults();
-
-  const runTestResults = runTests({
-    tests: inputData.map((operation, index) => ({
-      actual: results[index],
-      expected: (operation as OperationWithResult).expected,
-    })),
-  });
-
-  console.log({ runTestResults });
-
-  // ! TODO: try logging the promised data, and whether it returns in my selected order
 };
 
 runAsyncTests();
